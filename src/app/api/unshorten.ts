@@ -17,7 +17,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     // Get the location header if it exists
     const location = response.headers.get("Location");
-    console.log(location, "SINI")
 
     if (location) {
       return res.status(200).json({ location });
@@ -25,6 +24,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       return res.status(200).json({ message: "No redirect detected" });
     }
   } catch (error) {
-    return res.status(500).json({ error: "Failed to fetch URL" });
+    return res.status(500).json({ error: `Failed to fetch URL ${error}` });
   }
 }
